@@ -1,0 +1,53 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+class Main {
+    private static Scanner scanner = new Scanner(System.in);
+    private static Map<String, String> userCredentials = new HashMap<>();
+    private static Map<String, Reservation> reservations = new HashMap<>();
+    private static Map<String, String> trainDetails = new HashMap<>();
+    private static String loggedInUser = null;
+
+    public static void main(String[] args) {
+        userCredentials.put("Stefi", "Stefi@123"); // Default user credentials
+        trainDetails.put("1001", "Chennai Express");
+        trainDetails.put("1002", "Vaigai Express");
+
+        System.out.println("Welcome to the Online Reservation System");
+
+        int choice;
+        do {
+            System.out.println("\nMenu:");
+            System.out.println("1. Login");
+            System.out.println("2. Reservation Form");
+            System.out.println("3. Cancellation Form");
+            System.out.println("4. Show Reservations");
+            System.out.println("5. Logout");
+            System.out.println("6. Exit");
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    login();
+                    break;
+                case 2:
+                    if (loggedInUser != null) {
+                        reservationForm();
+                    } else {
+                        System.out.println("Please login first.");
+                    }
+                    break;
+                case 3:
+                    if (loggedInUser != null) {
+                        cancellationForm();
+                    } else {
+                        System.out.println("Please login first.");
+                    }
+                    break;
+                case 4:
+                    if (loggedInUser != null) {
+                        showReservations();
+                    } else {
+               
